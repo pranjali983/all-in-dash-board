@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Aap</title>
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --text: #1e293b;
+        }
+
+        body {
+            margin: 0;
+            background-color: var(--bg);
+            font-family: 'Segoe UI', sans-serif;
+            display: flex;
+            justify-content: center;
+            color: var(--text);
+        }
+
+        .phone {
+            width: 100%;
+            max-width: 400px;
+            background: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 0 20px rgba(0,0,0,0.05);
+        }
+
+        /* Header / Profile Section */
+        header {
+            padding: 30px 20px;
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            color: white;
+            border-radius: 0 0 30px 30px;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .avatar {
+            width: 50px;
+            height: 50px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        /* Widgets Section */
+        .widgets {
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .card {
+            background: var(--card);
+            padding: 15px;
+            border-radius: 20px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        }
+
+        /* Task Section */
+        .tasks {
+            padding: 0 20px 100px 20px;
+        }
+
+        .task-input-box {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        input {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 12px;
+            outline: none;
+        }
+
+        .add-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 12px;
+            cursor: pointer;
+        }
+
+        .task-item {
+            background: #f1f5f9;
+            padding: 12px;
+            border-radius: 12px;
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* Bottom Navigation */
+        nav {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            max-width: 400px;
+            background: white;
+            padding: 20px 0;
+            display: flex;
+            justify-content: space-around;
+            border-top: 1px solid #eee;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="phone">
+        <header>
+            <div class="user-info">
+                <div class="avatar">👤</div>
+                <div>
+                    <h2 style="margin:0">Hello, Alex</h2>
+                    <p style="margin:0; opacity:0.8; font-size: 0.9rem;">Saturday, May 9</p>
+                </div>
+            </div>
+        </header>
+
+        <section class="widgets">
+            <div class="card">
+                <p style="color: #64748b; font-size: 0.8rem; margin:0">Weather</p>
+                <h3 style="margin: 5px 0">☀️ 28°C</h3>
+            </div>
+            <div class="card">
+                <p style="color: #64748b; font-size: 0.8rem; margin:0">Steps</p>
+                <h3 style="margin: 5px 0">👟 8,432</h3>
+            </div>
+        </section>
+
+        <section class="tasks">
+            <h3>Daily Tasks</h3>
+            <div class="task-input-box">
+                <input type="text" id="tIn" placeholder="New task...">
+                <button class="add-btn" onclick="addT()">Add</button>
+            </div>
+            <div id="tList">
+                <div class="task-item"><span>Finish HTML project</span> <button onclick="this.parentElement.remove()" style="border:none; color:red; background:none;">✕</button></div>
+                <div class="task-item"><span>Drink water</span> <button onclick="this.parentElement.remove()" style="border:none; color:red; background:none;">✕</button></div>
+            </div>
+        </section>
+
+        <nav>
+            <span>🏠</span>
+            <span>📊</span>
+            <span>⚙️</span>
+        </nav>
+    </div>
+
+    <script>
+        function addT() {
+            const val = document.getElementById('tIn').value;
+            if(!val) return;
+            const item = `<div class="task-item"><span>${val}</span> <button onclick="this.parentElement.remove()" style="border:none; color:red; background:none;">✕</button></div>`;
+            document.getElementById('tList').innerHTML += item;
+            document.getElementById('tIn').value = '';
+        }
+    </script>
+
+</body>
+</html>
